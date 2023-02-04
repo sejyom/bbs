@@ -4,9 +4,11 @@ import com.bbs.bbs.entity.Bbs;
 import com.bbs.bbs.service.BbsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 public class BbsController {
@@ -22,5 +24,12 @@ public class BbsController {
     public String bbsWritePro(Bbs bbs) {
         bbsService.Write(bbs);
         return "";
+    }
+
+    @GetMapping("/bbs/list")
+    public String bbsList(Model model) {
+        model.addAttribute("list", bbsService.bbsList());
+
+        return "bbslist";
     }
 }
