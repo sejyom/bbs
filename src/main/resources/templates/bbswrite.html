@@ -5,16 +5,31 @@
     <title>게시물 작성 폼</title>
 </head>
 <style>
+
     .layout {
         width: 500px;
         margin: 0 auto; //위아래 0 좌우 auto
+        margin-top: 40px;
     }
+
+    .layout input, textarea {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .layout textarea {
+        margin-top: 10px;
+        min-height: 300px;
+    }
+
 </style>
 <body>
     <div class="layout">
-        <input type="text">
-        <textarea></textarea>
-        <button>작성</button>
+        <form action="/bbs/writepro" method="post">
+            <input name="title" type="text">
+            <textarea name="content"></textarea>
+            <button type="submit">작성</button>
+        </form>
     </div>
 </body>
 </html>
