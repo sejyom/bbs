@@ -2,9 +2,14 @@ package com.bbs.bbs.repository;
 
 import com.bbs.bbs.entity.Bbs;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 @Repository
 public interface BbsRepository extends JpaRepository<Bbs, Integer> { //JpaRepository<entity, pk type>
 
+//    @Query("select b from Bbs b where b.id = :id")
+    Optional<Bbs> findById(Integer id);
 }
