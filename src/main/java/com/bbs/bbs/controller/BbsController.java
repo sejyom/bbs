@@ -31,4 +31,10 @@ public class BbsController {
 
         return "bbslist";
     }
+
+    @GetMapping("bbs/view") //(localhost8080/bbs/view?id=1)
+    public String bbsView(Model model, Integer id) {
+        model.addAttribute("bbs", bbsService.bbsView(id));
+        return "bbsview";
+    }
 }

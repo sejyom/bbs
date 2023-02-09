@@ -9,19 +9,23 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class BbsService {
     @Autowired
     private BbsRepository bbsRepository;
 
-    private BbsService bbsService;
 
+    //글 작성 처리
     public void Write(Bbs bbs) {
         bbsRepository.save(bbs);
     }
 
+    //게시글 리스트 처리
     public List<Bbs> bbsList() {
         return bbsRepository.findAll();
     }
 
+    //특정 게시글 불러오기
+    public Bbs bbsView(Integer id) {
+        return BbsRepository.findById(id).get();
+    }
 }
