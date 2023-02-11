@@ -2,16 +2,18 @@ package com.bbs.bbs.service;
 
 import com.bbs.bbs.entity.Bbs;
 import com.bbs.bbs.repository.BbsRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class BbsService {
     @Autowired
-    private BbsRepository bbsRepository;
+    private final BbsRepository bbsRepository;
 
 
     //글 작성 처리
@@ -25,7 +27,7 @@ public class BbsService {
     }
 
     //특정 게시글 불러오기
-    public Bbs bbsView(Integer id) {
-        return BbsRepository.findById(id).get();
+    public Optional<Bbs> bbsView(Integer id) {
+        return bbsRepository.findById(id);
     }
 }
