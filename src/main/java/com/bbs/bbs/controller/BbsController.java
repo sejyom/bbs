@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -21,7 +22,7 @@ public class BbsController {
 
     @PostMapping("/bbs/writepro")
     public String bbsWritePro(Bbs bbs) {
-        bbsService.Write(bbs);
+        bbsService.write(bbs);
         return "";
     }
 
@@ -42,4 +43,23 @@ public class BbsController {
         bbsService.bbsDelete(id);
         return "redirect:/bbs/list";
     }
+
+    @GetMapping("/bbs/modify/{id}")
+    public String bbsModify(@PathVariable("id") Integer id, Model model) {
+        //PathVariable: 중괄호 안의 id가 Integer 형태의 id로 들어옴
+
+        model.addAttribute("bbs", bbsService.bbsView(id));
+        return "bbsmodify";
+    }
+
+    @PostMapping("/bbs/update/{id}")
+    public String bbsUpdate(@PathVariable("id") Integer id, Bbs bbs) {
+        Bbs bbsTemp = bbsService.bbsView(id); //임의의 객체에 기존 데이터 가져와서
+        bbsTemp.setTitle(bbs.getTitle()); //새로 입력된 데이터로 덮어씌움
+        bbsTemp.setContent(bbs.getContent());
+
+        bbsService.write(bbsTemp);
+        return "redirect:/bbs/list";
+    }
+
 }

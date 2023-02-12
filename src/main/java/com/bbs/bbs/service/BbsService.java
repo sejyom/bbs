@@ -17,7 +17,7 @@ public class BbsService {
 
 
     //글 작성 처리
-    public void Write(Bbs bbs) {
+    public void write(Bbs bbs) {
         bbsRepository.save(bbs);
     }
 
