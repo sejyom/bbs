@@ -28,13 +28,18 @@ public class BbsController {
     @GetMapping("/bbs/list")
     public String bbsList(Model model) {
         model.addAttribute("list", bbsService.bbsList());
-
         return "bbslist";
     }
 
-    @GetMapping("bbs/view") //(localhost8080/bbs/view?id=1)
+    @GetMapping("/bbs/view") //localhost:8080/bbs/view?id=1
     public String bbsView(Model model, Integer id) {
         model.addAttribute("bbs", bbsService.bbsView(id));
         return "bbsview";
+    }
+
+    @GetMapping("/bbs/delete")
+    public String bbsDelete(Integer id) {
+        bbsService.bbsDelete(id);
+        return "redirect:/bbs/list";
     }
 }

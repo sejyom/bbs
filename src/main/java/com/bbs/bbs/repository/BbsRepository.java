@@ -14,6 +14,4 @@ public interface BbsRepository extends JpaRepository<Bbs, Integer> { //JpaReposi
 
     Page<Bbs> findByTitleContaining(String searchKeyword, Pageable pageable);
 
-    @Query("select b from Bbs b where b.id = :id")
-    Optional<Bbs> findById(Integer id);
 }

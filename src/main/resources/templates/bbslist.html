@@ -23,7 +23,9 @@
             <tbody>
                 <tr th:each="bbs: ${list}">
                     <td th:text="${bbs.id}"></td>
-                    <td th:text="${bbs.title}"></td>
+                    <td>
+                        <a th:text="${bbs.title}" th:href="@{/bbs/view(id=${bbs.id})}"></a>
+                    </td>
                 </tr>
             </tbody>
         </table>

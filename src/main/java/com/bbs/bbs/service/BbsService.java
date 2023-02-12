@@ -27,7 +27,12 @@ public class BbsService {
     }
 
     //특정 게시글 불러오기
-    public Optional<Bbs> bbsView(Integer id) {
-        return bbsRepository.findById(id);
+    public Bbs bbsView(Integer id) {
+        return bbsRepository.findById(id).get();
+    }
+
+    //특정 게시글 삭제
+    public void bbsDelete(Integer id) {
+        bbsRepository.deleteById(id);
     }
 }
