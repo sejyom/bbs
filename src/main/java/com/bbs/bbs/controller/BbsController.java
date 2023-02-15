@@ -26,7 +26,7 @@ public class BbsController {
 
         model.addAttribute("message", "글 작성이 완료되었습니다.");
         model.addAttribute("searchUrl", "/bbs/list");
-        return "msg_write";
+        return "message";
     }
 
     @GetMapping("/bbs/list")
@@ -66,7 +66,7 @@ public class BbsController {
         model.addAttribute("message", "글 수정이 완료되었습니다.");
         model.addAttribute("searchUrl", "/bbs/list");
 
-        return "msg_update";
+        return "message";
     }
 
 }
