@@ -4,6 +4,8 @@ import com.bbs.bbs.entity.Bbs;
 import com.bbs.bbs.repository.BbsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,14 +30,14 @@ public class BbsService {
         file.transferTo(saveFile); //파일 저장
 
         bbs.setFilename(fileName);
-        bbs.setFilepath("/files/" + fileName);
+        bbs.setFilepath("/files/" + fileName); //DB 저장
 
         bbsRepository.save(bbs);
     }
 
     //게시글 리스트 처리
-    public List<Bbs> bbsList() {
-        return bbsRepository.findAll();
+    public Page<Bbs> bbsList(Pageable pageable) {
+        return bbsRepository.findAll(pageable);
     }
 
     //특정 게시글 불러오기

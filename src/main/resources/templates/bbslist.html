@@ -11,6 +11,13 @@
     margin-top: 40px;
     }
 </style>
+
+<!--    th:block -> 태그로 감쌀 필요가 없는 부분을 th문법을 이용할 때 사용
+        th:text -> 태그 안에 데이터를 출력
+        th:each -> 반복문
+        th:each=“${number: #number(시작번호, 끝번호)}”
+-->
+
 <body>
     <div class="layout">
         <table>
@@ -29,6 +36,10 @@
                 </tr>
             </tbody>
         </table>
+        <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+            <a th:if="${page != nowPage}" th:href="@{/bbs/list(page = ${page - 1})}" th:text="${page}"></a> <!--페이지 블럭의 페이지와 현재 페이지가 다를 때-->
+            <strong th:if="${page == nowPage}" th:text="${page}" style="color: red"></strong> <!--페이지 블럭의 페이지와 현재 페이지가 같을 때-->
+        </th:block>
     </div>
 </body>
 </html>
