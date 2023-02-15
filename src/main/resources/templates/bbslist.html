@@ -37,9 +37,15 @@
             </tbody>
         </table>
         <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
-            <a th:if="${page != nowPage}" th:href="@{/bbs/list(page = ${page - 1})}" th:text="${page}"></a> <!--페이지 블럭의 페이지와 현재 페이지가 다를 때-->
-            <strong th:if="${page == nowPage}" th:text="${page}" style="color: red"></strong> <!--페이지 블럭의 페이지와 현재 페이지가 같을 때-->
+            <!--페이지 블럭의 페이지와 현재 페이지가 다를 때-->
+            <a th:if="${page != nowPage}" th:href="@{/bbs/list(page = ${page - 1}, searchKeyword = ${param.searchKeyword})}" th:text="${page}"></a>
+            <!--페이지 블럭의 페이지와 현재 페이지가 같을 때-->
+            <strong th:if="${page == nowPage}" th:text="${page}" style="color: red"></strong>
         </th:block>
+        <form th:action="@{/bbs/list}" method="get">
+        <input type="text" name="searchKeyword"/>
+        <button type="submit">검색</button>
+        </form>
     </div>
 </body>
 </html>

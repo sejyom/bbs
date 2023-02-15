@@ -40,6 +40,10 @@ public class BbsService {
         return bbsRepository.findAll(pageable);
     }
 
+    public Page<Bbs> bbsSearchList(String searchKeyword, Pageable pageable) {
+        return bbsRepository.findByTitleContaining(searchKeyword, pageable);
+    }
+
     //특정 게시글 불러오기
     public Bbs bbsView(Integer id) {
         return bbsRepository.findById(id).get();

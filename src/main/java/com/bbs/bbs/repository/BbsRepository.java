@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Repository
 public interface BbsRepository extends JpaRepository<Bbs, Integer> { //JpaRepository<entity, pk type>
-
     Page<Bbs> findByTitleContaining(String searchKeyword, Pageable pageable);
 
 }

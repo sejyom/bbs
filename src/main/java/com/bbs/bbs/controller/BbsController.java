@@ -35,8 +35,17 @@ public class BbsController {
     }
 
     @GetMapping("/bbs/list")
-    public String bbsList(Model model, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-        Page<Bbs> list = bbsService.bbsList(pageable);
+    public String bbsList(Model model,
+                          @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
+                          String searchKeyword) {
+
+        Page<Bbs> list = null;
+
+        if (searchKeyword == null) { //검색 단어가 안 들어왔을 때
+            list = bbsService.bbsList(pageable);
+        } else { //검색 단어가 들어왔을 때
+            list = bbsService.bbsSearchList(searchKeyword, pageable);
+        }
 
         int nowPage = list.getPageable().getPageNumber() + 1; //pageable 시작점이 0이라 1 더해줘야 함
         int startPage = Math.max(nowPage - 4, 1); //nowPage-4 < 0일 경우 1 반환
@@ -46,6 +55,7 @@ public class BbsController {
         model.addAttribute("nowPage", nowPage);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
+
         return "bbslist";
     }
 
