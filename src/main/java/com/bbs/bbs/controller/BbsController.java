@@ -20,10 +20,13 @@ public class BbsController {
         return "bbswrite";
     }
 
-    @PostMapping("/bbs/writepro")
-    public String bbsWritePro(Bbs bbs) {
+    @PostMapping("/bbs/writepro") //글쓰기 처리
+    public String bbsWritePro(Bbs bbs, Model model) {
         bbsService.write(bbs);
-        return "";
+
+        model.addAttribute("message", "글 작성이 완료되었습니다.");
+        model.addAttribute("searchUrl", "/bbs/list");
+        return "msg_write";
     }
 
     @GetMapping("/bbs/list")
@@ -53,13 +56,17 @@ public class BbsController {
     }
 
     @PostMapping("/bbs/update/{id}")
-    public String bbsUpdate(@PathVariable("id") Integer id, Bbs bbs) {
+    public String bbsUpdate(@PathVariable("id") Integer id, Bbs bbs, Model model) {
         Bbs bbsTemp = bbsService.bbsView(id); //임의의 객체에 기존 데이터 가져와서
         bbsTemp.setTitle(bbs.getTitle()); //새로 입력된 데이터로 덮어씌움
         bbsTemp.setContent(bbs.getContent());
 
         bbsService.write(bbsTemp);
-        return "redirect:/bbs/list";
+
+        model.addAttribute("message", "글 수정이 완료되었습니다.");
+        model.addAttribute("searchUrl", "/bbs/list");
+
+        return "msg_update";
     }
 
 }
