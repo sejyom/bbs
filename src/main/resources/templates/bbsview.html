@@ -5,8 +5,11 @@
     <title>게시글 상세 페이지</title>
 </head>
 <body>
+<!-- th:href -> a태그에 경로를 걸 때 사용 -->
+<!-- th:text -> 태그에 문자열을 출력할 때 사용 -->
 <h1 th:text="${bbs.title}">제목입니다.</h1>
 <p th:text="${bbs.content}">내용이 들어갈 부분입니다.</p>
+<a th:href="@{${bbs.filepath}}">다운받기</a>
 <a th:href="@{/bbs/delete(id=${bbs.id})}">글 삭제</a>
 <a th:href="@{/bbs/modify/{id}(id=${bbs.id})}">수정</a>
 </body>

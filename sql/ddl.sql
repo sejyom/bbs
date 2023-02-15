@@ -3,6 +3,8 @@ create table bbs (
     id int NOT NULL AUTO_INCREMENT,
     title varchar(45) not null,
     content text not null,
+    filename varchar(150),
+    filepath varchar(300),
     primary key(id)
 )
 
