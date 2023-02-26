@@ -48,7 +48,7 @@ public class BbsController {
         }
 
         int nowPage = list.getPageable().getPageNumber() + 1; //pageable 시작점이 0이라 1 더해줘야 함
-        int startPage = Math.max(nowPage - 4, 1); //nowPage-4 < 0일 경우 1 반환
+        int startPage = Math.max(nowPage - 4, 1); //nowPage - 4 < 0일 경우 1 반환
         int endPage = Math.min(nowPage + 5, list.getTotalPages());
 
         model.addAttribute("list", list);
