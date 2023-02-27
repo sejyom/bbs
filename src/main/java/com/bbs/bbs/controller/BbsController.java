@@ -25,7 +25,7 @@ public class BbsController {
         return "bbswrite";
     }
 
-    @PostMapping("/bbs/writepro") //글쓰기 처리
+    @PostMapping("/bbs/writepro") //글쓰기
     public String bbsWritePro(Bbs bbs, Model model, MultipartFile file) throws Exception {
         bbsService.write(bbs, file);
 
